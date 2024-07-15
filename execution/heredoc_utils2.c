@@ -17,8 +17,7 @@ void	heredoc_enqueue(t_list **heredoc, char *delimiter, t_token_info *token_info
 			free(buffer);
 			break ;
 		}
-    //EXPAND HERE BEFORE WRITING TO THE TEMPORARY FD!!
-    ft_putstr_fd(expand_env(buffer, token_info), fd[1]);
+		ft_putstr_fd(expand_env(buffer, token_info), fd[1]);
 		free(buffer);
 		printf("> ");
 		buffer = get_next_line(STDIN_FILENO);
@@ -27,7 +26,7 @@ void	heredoc_enqueue(t_list **heredoc, char *delimiter, t_token_info *token_info
 	ft_lstadd_back(heredoc, ft_lstnew(fd));
 }
 
-int ms_heredoc_dequeue(t_list **heredoc)
+int	heredoc_dequeue(t_list **heredoc)
 {
 	int		res;
 	t_list	*temp;

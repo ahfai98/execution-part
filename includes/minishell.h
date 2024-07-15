@@ -70,9 +70,9 @@ int			g_errno; // Global errno is defined here
 typedef struct s_exe
 {
 	t_list	*heredoc; //heredoc list that contains the piped fds
-	int		**pipe_fd;  //pipes for fds
+	int		**pipe_fd; //pipes for fds
 	int		pipe_count; //number of pipes
-	int		infile;  //infile fd
+	int		infile; //infile fd
 	int		outfile; //outfile fd
 	int		tmpstdin; //original stdin used to restore
 	int		tmpstdout; //original stdout used to restore
@@ -88,7 +88,7 @@ typedef struct s_io
 		IO_AOUT,
 		IO_IN,
 		IO_OUT
-	}	e_type; //type of redirection, AIN<<, AOUT>>, IN<,OUT>
+	}	e_type; //type of redirection, AIN<<, AOUT>>, IN<, OUT>
 	t_list		*value; //filename or delimiter for heredoc
 	struct s_io	*next; // pointer to next node in io_list
 }	t_io;
@@ -96,10 +96,9 @@ typedef struct s_io
 typedef struct s_pipe
 {
 	t_list			*argv; //list of arguments
-	t_io			*io_list; //io_list of pipe
+	t_io			*io_list; //io_list for the pipe
 	struct s_pipe	*next; //pointer to next pipe in pipe_list
 }	t_pipe;
-
 
 typedef struct s_cmd
 {
@@ -114,7 +113,8 @@ typedef struct s_cmd
 		PIPE_LIST,
 		CMD_LIST
 	}	e_type; 
-	/** type of struct that it is holding, CMD_LIST for grouped commands in subshells, PIPE_LIST for simple commands with pipes */
+	//CMD_LIST for grouped commands in subshells
+	//PIPE_LIST for simple commands with pipes
 	void			*ptr; //ptr to the struct it is holding
 	struct s_cmd	*next; //pointer to next node in cmd_list
 }	t_cmd;

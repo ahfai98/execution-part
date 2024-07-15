@@ -2,9 +2,10 @@
 
 void  print_syntax_error(t_token *token)
 {
-  g_errno = 1;
-	printf("bash: syntax error near unexpected token `%s'\n",
-					token->word);
+	g_errno = 1;
+	if (*token)
+		printf("bash: syntax error near unexpected token `%s'\n",
+			token->word);
 }
 
 t_cmd	*cmd_list_init(int operator)

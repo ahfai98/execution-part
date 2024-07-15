@@ -27,14 +27,14 @@ t_pipe	*parse_pipe_list_sub(t_token *token_list)
 		else if (is_io_token(token_list->word)
 			&& parse_io_list(token_list, &buffer->io_list))
 			return (pipe_list);
-    else if (check_valid_filename(token_list) == 1)
+		else if (check_valid_filename(token_list) == 1)
 			pipe_new_arg(token_list, buffer);
 		else
 			break;
 		token_list = token_list->next;
 	}
 	if (buffer->argv == NULL && buffer->io_list == NULL)
-		print_syntax_error();
+		print_syntax_error(NULL);
 	return (pipe_list);
 }
 
@@ -50,9 +50,9 @@ int	parse_pipe_next(t_pipe **buffer)
 	return (0);
 }
 
-void	pipe_new_arg(t_token *tokeen_list, t_pipe *buffer)
+void	pipe_new_arg(t_token *token_list, t_pipe *buffer)
 {
-	t_list		*new;
+	t_list	*new;
 
 	new = ft_lstnew(ft_calloc(1, sizeof(char *)));
 	ft_memcpy(new->content, token_list->word, sizeof(char *));

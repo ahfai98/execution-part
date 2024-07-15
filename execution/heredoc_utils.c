@@ -1,7 +1,7 @@
 #include "minishell.h"
 
 void	heredoc_cmd_queue(t_exe *exec, t_cmd *cmd_list,
-	int state, t_token_info *token_info)
+			int state, t_token_info *token_info)
 {
 	while (cmd_list)
 	{
@@ -14,7 +14,7 @@ void	heredoc_cmd_queue(t_exe *exec, t_cmd *cmd_list,
 }
 
 void	heredoc_pipe_queue(t_exe *exec, t_pipe *pipe_list, int state,
-	t_token_info *token_info)
+			t_token_info *token_info)
 {
 	while (pipe_list)
 	{

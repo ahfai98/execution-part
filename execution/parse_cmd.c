@@ -1,13 +1,13 @@
 #include "minishell.h"
 
-t_cmd *parse_cmd_list(t_token *token_list)
+t_cmd	*parse_cmd_list(t_token *token_list)
 {
-  t_cmd *cmd_list;
-  t_cmd *buffer;
+	t_cmd *cmd_list;
+	t_cmd *buffer;
 
-  cmd_list = cmd_list_init(OP_START);
-  buffer = cmd_list;
-  while (token_list && g_errno == 0)
+	cmd_list = cmd_list_init(OP_START);
+	buffer = cmd_list;
+	while (token_list && g_errno == 0)
 	{
 		if (ft_strncmp(token_list->word, "(", 1) == 0)
 			parse_cmd_recurse(token_list, &buffer);
@@ -37,6 +37,7 @@ void	parse_cmd_recurse(t_token *token_list, t_cmd **buffer)
 		(*buffer)->e_type = CMD_LIST;
 		(*buffer)->ptr = parse_cmd_list(token_list);
 		token_list = token_list->next;
+	}
 }
 
 void	parse_cmd_next(t_token *token_list, t_cmd **buffer)
@@ -45,10 +46,10 @@ void	parse_cmd_next(t_token *token_list, t_cmd **buffer)
 		print_syntax_error(NULL);
 	else
 	{
-    if (ft_strncmp(token_list->word, "&&", 2) == 0)
-      (*buffer)->next = cmd_list_init(OP_AND);
-    else
-		  (*buffer)->next = cmd_list_init(OP_OR);
+		if (ft_strncmp(token_list->word, "&&", 2) == 0)
+			(*buffer)->next = cmd_list_init(OP_AND);
+		else
+			(*buffer)->next = cmd_list_init(OP_OR);
 		*buffer = (*buffer)->next;
 		token_list = token_list->next;
 	}

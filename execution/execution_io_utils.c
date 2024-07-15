@@ -5,7 +5,7 @@ int	executor_ambiguous(t_exe *exec, t_list *value, char *env_val)
 	if (ft_lstsize(value) != 1)
 	{
 		ft_putstr_fd("minishell: ambiguous redirect", 2);
-    ft_putendl_fd(env_val, 2);
+		ft_putendl_fd(env_val, 2);
 		exec->runtime_error = 1;
 		return (1);
 	}
@@ -28,20 +28,20 @@ void	executor_io_out(t_exe *exec, t_io *io)
 		close(exec->outfile);
 	if (io->e_type == IO_AOUT)
 		exec->outfile = open(*(char **)io->value->content,
-				O_WRONLY | O_CREAT | O_APPEND, 0644);
+			O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else
 		exec->outfile = open(*(char **)io->value->content,
-				O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			O_WRONLY | O_CREAT | O_TRUNC, 0644);
 }
 
 int	executor_check_file_error(t_exe *exec, char *filename)
 {
 	if (exec->infile == -1 || exec->outfile == -1)
 	{
-    ft_putstr_fd("minishell:", 2);
-    ft_putstr_fd(filename, 2);
-    ft_putchar_fd(':', 2);
-    ft_putendl_fd(strerror(errno), 2);
+		ft_putstr_fd("minishell:", 2);
+		ft_putstr_fd(filename, 2);
+		ft_putchar_fd(':', 2);
+		ft_putendl_fd(strerror(errno), 2);
 		exec->runtime_error = 1;
 	}
 	return (exec->runtime_error);

@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void  execution(t_token_info *token_info, t_cmd *cmd_list)
+void 	execution(t_token_info *token_info, t_cmd *cmd_list)
 {
 	t_exe	*exec;
 
@@ -69,7 +69,7 @@ void	executor(t_token_info *token_info, t_exe *exec, t_pipe *p)
 		executor_bi(token_info, argv, bif_n);
 	else if (argv[0] != NULL)
 	{
-		exe_non_bi(token_info, exec, p, argv);
+		executor_non_bi(token_info, exec, p, argv);
 		exec->has_child = 1;
 	}
 	free(argv);
