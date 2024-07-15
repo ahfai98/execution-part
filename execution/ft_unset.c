@@ -62,8 +62,10 @@ void	find_and_delete(t_token_info *token_info, char *key)
 int	ft_unset(t_token_info *token_info, char **args)
 {
 	int		i;
+	t_env	*new;
 
 	i = 0;
+	new = token_info->global_env;
 	while (args[++i] != 0)
 	{
 		if (check_valid_identifier(args[i], args[i], "unset") == 1)
@@ -71,5 +73,7 @@ int	ft_unset(t_token_info *token_info, char **args)
 		else
 			return (1);
 	}
+	ft_free_array((void **)token_info->env_arr, 0);
+	token_info->env_arr = env2arr(new);
 	return (0);
 }

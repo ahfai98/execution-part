@@ -6,9 +6,9 @@ int	ft_cd(t_token_info *token_info, char **args)
 
 	if (args[1] == 0)
 	{
-    path = expand_env("$HOME", token_info);
+		path = expand_env("$HOME", token_info);
 		if (path == NULL)
-      ft_putendl_fd("HOME not set", 2);
+			ft_putendl_fd("HOME not set", 2);
 		else if (chdir(path) < 0)
 			perror(path);
 		free(path);
